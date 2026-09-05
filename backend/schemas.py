@@ -1,0 +1,170 @@
+from pydantic import BaseModel, Field
+from typing import List, Optional
+from datetime import datetime
+
+# --- User Schemas ---
+class UserBase(BaseModel):
+    name: str
+    phone: str
+    email: Optional[str] = None
+    role: str
+    fpo_name: Optional[str] = None
+    district: str
+    state: str
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+
+class UserCreate(UserBase):
+    pass
+
+class UserResponse(UserBase):
+    id: int
+    trust_score: float
+    verified: bool
+    kyc_status: str
+    total_trades: int
+    rating_count: int
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class LoginRequest(BaseModel):
+    phone: str
+    role: Optional[str] = "FARMER"
+
+# --- Crop Listing Schemas ---
+class CropListingCreate(BaseModel):
+    farmer_id: int
+    crop_name: str
+    variety: str
+    quantity_quintals: float
+    quality_grade: str = "Grade A"
+    harvest_date: str
+    district: str
+    state: str
+    pincode: str
+    lat: float
+    lng: float
+    is_organic: bool = False
+    expected_price_per_quintal: float
+    notes: Optional[str] = None
+    image_url: Optional[str] = None
+
+class CropListingResponse(CropListingCreate):
+    id: int
+    mandi_benchmark_price: float
+    ai_recommended_min: float
+    ai_recommended_max: float
+    ai_recommended_target: float
+    status: str
+    created_at: datetime
+    farmer_name: Optional[str] = None
+    farmer_trust_score: Optional[float] = None
+    farmer_verified: Optional[bool] = None
+
+    class Config:
+        from_attributes = True
+
+# --- AI Fair Price Engine Schemas ---
+class PricePredictionRequest(BaseModel):
+    crop_name: str
+    variety: Optional[str] = "Standard"
+    quantity_quintals: float
+    quality_grade: str = "Grade A"
+    district: str
+    state: str
+    month: Optional[int] = None
+    is_organic: bool = False
+
+class PriceFactorDetail(BaseModel):
+    factor_name: str
+    impact_pct: float
+    explanation: str
+
+class PricePredictionResponse(BaseModel):
+    crop_name: str
+    quality_grade: str
+    quantity_quintals: float
+    min_fair_price: float
+    max_fair_price: float
+    recommended_target_price: float
+    mandi_benchmark_price: float
+    retail_estimated_price: float
+    confidence_score: float
+    factors: List[PriceFactorDetail]
+    methodology: str
+
+# --- Order & Payment Schemas ---
+class OrderCreate(BaseModel):
+    listing_id: int
+    buyer_id: int
+    quantity_ordered: float
+    delivery_address: str
+    delivery_pincode: str
+    delivery_lat: Optional[float] = None
+    delivery_lng: Optional[float] = None
+
+class OrderStatusUpdate(BaseModel):
+    status: str
+    otp: Optional[str] = None
+
+class OrderResponse(BaseModel):
+    id: int
+    order_number: str
+    listing_id: int
+    buyer_id: int
+    farmer_id: int
+    crop_name: Optional[str] = None
+    quantity_ordered: float
+    price_per_quintal: float
+    total_produce_amount: float
+    logistics_fee: float
+    platform_fee: float
+    total_amount: float
+    status: str
+    payment_status: str
+    payment_ref: Optional[str] = None
+    delivery_address: str
+    delivery_pincode: str
+    delivery_otp: str
+    created_at: datetime
+    buyer_name: Optional[str] = None
+    farmer_name: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+class UPIPaymentVerifyRequest(BaseModel):
+    order_id: int
+    upi_id: str
+    amount: float
+    utr_number: str
+
+# --- Logistics & Route Optimization Schemas ---
+class RouteStop(BaseModel):
+    stop_id: str
+    type: str  # "PICKUP" or "DELIVERY"
+    name: str
+    location_name: str
+    lat: float
+    lng: float
+    quantity_quintals: float
+    crop_name: str
+    contact_phone: str
+    status: str = "PENDING"
+
+class RouteOptimizationResponse(BaseModel):
+    batch_id: str
+    driver_name: str
+    vehicle_number: str
+    stops: List[RouteStop]
+    total_distance_km: float
+    naive_distance_km: float
+    distance_saved_km: float
+    distance_saved_pct: float
+    transit_time_hrs: float
+    time_saved_hrs: float
+    co2_saved_kg: float
+    spoilage_reduction_pct: float
+    optimization_algorithm: str

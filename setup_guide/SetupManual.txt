@@ -1,0 +1,36 @@
+Running the Full-Stack Web App 
+        Setp 1: From the root directory: 
+                    npm install 
+        Step 2: Go to the backend directory: 
+                    cd backend
+        Step 3: Create and activate a virtual environment:
+                    python -m venv venv
+                    venv\Scripts\activate
+        Step 4: Install dependencies and seed the database:
+                    pip install -r requirements.txt
+                    python seed_data.py
+        Step 5: Start the backend server:
+                    uvicorn main:app --reload --host [IP_ADDRESS] --port 8000
+        Step 6: In the root directory, run:
+                    npm run dev
+
+
+Running Only the Frontend
+        If you only want to run the frontend (localhost:3000):
+        From the root directory:
+                    npm install
+                    npm run dev
+
+
+Running Only the Backend
+        If you only want to run the backend (localhost:8000):
+        Go to the backend directory:
+                    cd backend
+        Activate virtual environment:
+                    venv\Scripts\activate
+        Install dependencies:
+                    pip install -r requirements.txt
+        Seed database (optional):
+                    python seed_data.py
+        Start server:
+                    uvicorn main:app --reload --host [IP_ADDRESS] --port 8000

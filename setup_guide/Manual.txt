@@ -1,0 +1,21 @@
+Prerequisites
+            - Node.js
+            - npm 
+            - Python
+            - pip
+
+Use this commaoand only when you have already installed Node.js and Python.
+Use these commonds only when you have successfully setuped the Application using the SetupManual.txt file.
+
+Terminal 1: Frontend & Full-Stack Web Server (Port 3000)
+    step 1 : Run this in the root directory: 
+                    npm run dev
+    step 2 : Open localhost:3000 in your browser
+
+Terminal 2: Backend API (Port 8000)
+    step 1 : Run this in the backend directory: 
+                    cd backend
+    step 2 : Activate virtual environment: 
+                    venv\Scripts\activate
+    step 3 : Run the API: uvicorn main:
+                    app --reload --host 0.0.0.0  --port 8000

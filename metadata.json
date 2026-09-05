@@ -1,0 +1,6 @@
+{
+  "name": "किसानSetu - Agri Marketplace",
+  "description": "Direct Farmer-to-Consumer Digital Agri-Marketplace with AI Fair Price Recommendation, Trust Scores, and Route Optimization",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "किसानSetu - Agri Marketplace",
+  "short_name": "किसानSetu",
+  "description": "Direct Farmer-to-Consumer Digital Agri-Marketplace with AI Fair Price Recommendation, Trust Scores, and Route Optimization",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F0FDF4",
+  "theme_color": "#0F6A53"
+}

@@ -1,0 +1,151 @@
+import {
+  CropListing,
+  FairPriceResult,
+  MandiComparison,
+  Order,
+  RouteBatch,
+  MarketAnalytics,
+  User
+} from "./types";
+
+async function safeFetchJson<T>(url: string, options?: RequestInit, fallback?: T): Promise<T> {
+  try {
+    const res = await fetch(url, options);
+    if (!res.ok) {
+      if (fallback !== undefined) return fallback;
+      const text = await res.text();
+      let msg = `HTTP error ${res.status}`;
+      try {
+        const json = JSON.parse(text);
+        msg = json.error || json.detail || msg;
+      } catch {
+        // use default msg
+      }
+      throw new Error(msg);
+    }
+    return (await res.json()) as T;
+  } catch (err: any) {
+    if (fallback !== undefined) return fallback;
+    throw err;
+  }
+}
+
+export const API = {
+  async getHealth() {
+    return safeFetchJson<{ status: string }>("/api/health", undefined, { status: "ok" });
+  },
+
+  async getUsers(role?: string): Promise<User[]> {
+    return safeFetchJson<User[]>(`/api/auth/users${role ? `?role=${role}` : ""}`, undefined, []);
+  },
+
+  async login(phone: string, role: string): Promise<User> {
+    return safeFetchJson<User>("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone, role })
+    });
+  },
+
+  async getListings(params?: {
+    crop?: string;
+    district?: string;
+    grade?: string;
+    organic_only?: boolean;
+    max_price?: number;
+    search?: string;
+  }): Promise<CropListing[]> {
+    const query = new URLSearchParams();
+    if (params?.crop) query.append("crop", params.crop);
+    if (params?.district) query.append("district", params.district);
+    if (params?.grade) query.append("grade", params.grade);
+    if (params?.organic_only) query.append("organic_only", "true");
+    if (params?.max_price) query.append("max_price", params.max_price.toString());
+    if (params?.search) query.append("search", params.search);
+
+    return safeFetchJson<CropListing[]>(`/api/listings?${query.toString()}`, undefined, []);
+  },
+
+  async createListing(listingData: Partial<CropListing>): Promise<CropListing> {
+    return safeFetchJson<CropListing>("/api/listings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(listingData)
+    });
+  },
+
+  async getPriceRecommendation(params: {
+    cropName: string;
+    quantityQuintals: number;
+    qualityGrade?: string;
+    district?: string;
+    state?: string;
+    month?: number;
+    isOrganic?: boolean;
+  }): Promise<FairPriceResult> {
+    return safeFetchJson<FairPriceResult>("/api/pricing/recommend", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params)
+    });
+  },
+
+  async getMandiComparison(cropName: string): Promise<MandiComparison> {
+    return safeFetchJson<MandiComparison>(`/api/pricing/mandi-compare/${encodeURIComponent(cropName)}`);
+  },
+
+  async getOrders(userId?: number, role?: string): Promise<Order[]> {
+    const query = new URLSearchParams();
+    if (userId) query.append("userId", userId.toString());
+    if (role) query.append("role", role);
+    return safeFetchJson<Order[]>(`/api/orders?${query.toString()}`, undefined, []);
+  },
+
+  async placeOrder(orderData: {
+    listingId: number;
+    buyerId: number;
+    quantityOrdered: number;
+    deliveryAddress: string;
+    deliveryPincode: string;
+  }): Promise<Order> {
+    return safeFetchJson<Order>("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(orderData)
+    });
+  },
+
+  async updateOrderStatus(orderId: number, status: string, otp?: string): Promise<Order> {
+    return safeFetchJson<Order>(`/api/orders/${orderId}/status`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status, otp })
+    });
+  },
+
+  async verifyUpiPayment(payload: {
+    orderId: number;
+    upiId: string;
+    amount: number;
+    utrNumber?: string;
+  }) {
+    return safeFetchJson<any>("/api/payments/upi-verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+  },
+
+  async getRouteOptimization(): Promise<RouteBatch> {
+    return safeFetchJson<RouteBatch>("/api/logistics/routes");
+  },
+
+  async getAnalytics(): Promise<MarketAnalytics> {
+    return safeFetchJson<MarketAnalytics>("/api/analytics/summary");
+  },
+
+  async resetSeedData() {
+    return safeFetchJson<{ message: string }>("/api/seed/reset", { method: "POST" });
+  }
+};
+
