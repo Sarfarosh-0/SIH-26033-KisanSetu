@@ -1,21 +1,41 @@
-Prerequisites
-            - Node.js
-            - npm 
-            - Python
-            - pip
+===================================================================
+                  KISANSETU - RUNTIME MANUAL
+===================================================================
 
-Use this commaoand only when you have already installed Node.js and Python.
-Use these commonds only when you have successfully setuped the Application using the SetupManual.txt file.
+PREREQUISITES:
+  - Node.js (v18 or higher recommended)
+  - npm (bundled with Node.js)
+  - Python (v3.9 or higher recommended)
+  - pip (bundled with Python)
 
-Terminal 1: Frontend & Full-Stack Web Server (Port 3000)
-    step 1 : Run this in the root directory: 
-                    npm run dev
-    step 2 : Open localhost:3000 in your browser
+IMPORTANT: 
+  - Ensure you have completed the initial setup steps outlined in 
+    'SetupManual.txt' before using these commands.
+  - Open two separate terminal windows/tabs to run the stack.
 
-Terminal 2: Backend API (Port 8000)
-    step 1 : Run this in the backend directory: 
-                    cd backend
-    step 2 : Activate virtual environment: 
-                    venv\Scripts\activate
-    step 3 : Run the API: uvicorn main:
-                    app --reload --host 0.0.0.0  --port 8000
+-------------------------------------------------------------------
+TERMINAL 1: FRONTEND DEVELOPMENT SERVER (Port 3000)
+-------------------------------------------------------------------
+Step 1: Navigate to the project root directory and start Vite:
+        npm run dev
+
+Step 2: Access the application in your browser:
+        http://localhost:3000
+
+-------------------------------------------------------------------
+TERMINAL 2: BACKEND FASTAPI SERVER (Port 8000)
+-------------------------------------------------------------------
+Step 1: Navigate to the backend directory:
+        cd backend
+
+Step 2: Activate the virtual environment:
+        - Windows (Command Prompt/PowerShell):
+          venv\Scripts\activate
+
+        - macOS / Linux:
+          source venv/bin/activate
+
+Step 3: Start the FastAPI API server:
+        uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+===================================================================
