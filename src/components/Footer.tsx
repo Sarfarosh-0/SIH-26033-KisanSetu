@@ -14,9 +14,11 @@ import {
   Facebook,
   Twitter,
   Instagram,
-  Linkedin
+  Linkedin,
+  Sprout
 } from "lucide-react";
 import type { UserRole } from "../types";
+import { t } from "../i18n";
 
 export interface FooterProps {
   onSelectTab?: (tab: string) => void;
@@ -29,7 +31,8 @@ export interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({
   onSelectTab,
-  onSelectUserRole
+  onSelectUserRole,
+  lang = "hi"
 }) => {
   const handleNavigate = (tab: string, role?: UserRole) => {
     if (role && onSelectUserRole) {
@@ -49,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({
     >
       {/* Background Farm Landscape Silhouette Graphic (Bottom Right) */}
       <div 
-        className="absolute right-0 bottom-0 pointer-events-none select-none overflow-hidden opacity-30 lg:opacity-40 w-[380px] sm:w-[480px] md:w-[600px] h-[220px]" 
+        className="absolute right-0 bottom-0 pointer-events-none select-none overflow-hidden opacity-25 lg:opacity-35 w-[320px] sm:w-[420px] md:w-[500px] h-[140px] sm:h-[170px]" 
         aria-hidden="true"
       >
         <svg
@@ -148,82 +151,43 @@ export const Footer: React.FC<FooterProps> = ({
         </svg>
       </div>
 
-      {/* Main Footer Content Container */}
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12">
+      {/* Main Footer Content Container - Minimized padding */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-7 pb-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
           
           {/* ========================================================================= */}
           {/* Column 1: Brand & Socials (lg:col-span-4)                                 */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-4 flex flex-col justify-between space-y-6 lg:pr-8 lg:border-r lg:border-[#0E4233]">
-            <div className="space-y-4">
-              {/* Brand Logo & Name */}
-              <div className="flex items-center gap-3">
-                {/* Organic Multi-leaf sprout logo matching image precisely */}
-                <div className="w-11 h-11 flex items-center justify-center shrink-0">
-                  <svg 
-                    viewBox="0 0 48 48" 
-                    fill="none" 
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-10 h-10 drop-shadow-[0_2px_8px_rgba(74,222,128,0.2)]"
-                  >
-                    {/* Main upper left leaf */}
-                    <path
-                      d="M10 24C10 14 18 8 26 8C26 16 20 24 10 24Z"
-                      fill="#4ADE80"
-                    />
-                    <path
-                      d="M12 22C14 15 20 11 25 9.5"
-                      stroke="#06241B"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    {/* Big central arch leaf */}
-                    <path
-                      d="M16 36C16 20 28 14 42 14C42 28 30 36 16 36Z"
-                      fill="#22C55E"
-                    />
-                    <path
-                      d="M18 34C24 24 32 18 40 15.5"
-                      stroke="#06241B"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                    {/* Bottom right leaf / base support */}
-                    <path
-                      d="M14 40C20 40 32 37 38 30C30 31 20 37 14 40Z"
-                      fill="#16A34A"
-                    />
-                    {/* Small left bud */}
-                    <path
-                      d="M8 18C8 12 13 10 16 10C16 15 12 18 8 18Z"
-                      fill="#86EFAC"
-                    />
-                  </svg>
+          <div className="lg:col-span-4 flex flex-col justify-between space-y-3.5 lg:pr-6 lg:border-r lg:border-[#0E4233]">
+            <div className="space-y-2.5">
+              {/* Brand Logo & Name - Matches App Logo precisely */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#0F6A53] to-[#0B5745] flex items-center justify-center text-white shadow-xs border border-emerald-500/20 shrink-0">
+                  <Sprout className="w-4 h-4 sm:w-5 sm:h-5 text-white" strokeWidth={2.2} aria-hidden="true" />
                 </div>
 
-                <span className="text-2xl sm:text-[26px] font-extrabold tracking-tight text-white font-sans">
+                <span className="text-xl sm:text-2xl font-bold tracking-tight text-white font-sans leading-none">
                   किसान<span className="text-[#4ADE80]">Setu</span>
                 </span>
               </div>
 
               {/* Mission Statement */}
-              <p className="text-sm text-[#B7D1C5] leading-relaxed max-w-sm font-normal">
-                Connecting farmers directly with buyers and building a transparent, efficient and sustainable agricultural marketplace.
+              <p className="text-xs sm:text-sm text-[#B7D1C5] leading-relaxed max-w-sm font-normal">
+                {t("footer.mission", lang)}
               </p>
             </div>
 
             {/* Social Media Circular Buttons */}
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-1 flex items-center gap-2.5">
               {/* Facebook */}
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-sm border border-[#144F3D] hover:border-[#4ADE80] group"
-                aria-label="किसानSetu on Facebook"
+                className="w-8 h-8 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-xs border border-[#144F3D] hover:border-[#4ADE80] group"
+                aria-label={lang === "hi" ? "किसानSetu फेसबुक पर" : "किसानSetu on Facebook"}
               >
-                <Facebook className="w-4 h-4 fill-current transition-transform group-hover:scale-110" />
+                <Facebook className="w-3.5 h-3.5 fill-current transition-transform group-hover:scale-110" />
               </a>
 
               {/* Twitter / X */}
@@ -231,10 +195,10 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-sm border border-[#144F3D] hover:border-[#4ADE80] group"
-                aria-label="किसानSetu on Twitter"
+                className="w-8 h-8 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-xs border border-[#144F3D] hover:border-[#4ADE80] group"
+                aria-label={lang === "hi" ? "किसानSetu ट्विटर पर" : "किसानSetu on Twitter"}
               >
-                <Twitter className="w-4 h-4 fill-current transition-transform group-hover:scale-110" />
+                <Twitter className="w-3.5 h-3.5 fill-current transition-transform group-hover:scale-110" />
               </a>
 
               {/* Instagram */}
@@ -242,10 +206,10 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-sm border border-[#144F3D] hover:border-[#4ADE80] group"
-                aria-label="किसानSetu on Instagram"
+                className="w-8 h-8 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-xs border border-[#144F3D] hover:border-[#4ADE80] group"
+                aria-label={lang === "hi" ? "किसानSetu इंस्टाग्राम पर" : "किसानSetu on Instagram"}
               >
-                <Instagram className="w-4 h-4 transition-transform group-hover:scale-110" strokeWidth={2.2} />
+                <Instagram className="w-3.5 h-3.5 transition-transform group-hover:scale-110" strokeWidth={2.2} />
               </a>
 
               {/* LinkedIn */}
@@ -253,10 +217,10 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-sm border border-[#144F3D] hover:border-[#4ADE80] group"
-                aria-label="किसानSetu on LinkedIn"
+                className="w-8 h-8 rounded-full bg-[#0B3B2D] hover:bg-[#4ADE80] text-white hover:text-[#06241B] flex items-center justify-center transition-all duration-200 shadow-xs border border-[#144F3D] hover:border-[#4ADE80] group"
+                aria-label={lang === "hi" ? "किसानSetu लिंक्डइन पर" : "किसानSetu on LinkedIn"}
               >
-                <Linkedin className="w-4 h-4 fill-current transition-transform group-hover:scale-110" />
+                <Linkedin className="w-3.5 h-3.5 fill-current transition-transform group-hover:scale-110" />
               </a>
             </div>
           </div>
@@ -264,23 +228,23 @@ export const Footer: React.FC<FooterProps> = ({
           {/* ========================================================================= */}
           {/* Column 2: Quick Links (lg:col-span-2 or 3)                                 */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-2 xl:col-span-2 space-y-4">
+          <div className="lg:col-span-2 xl:col-span-2 space-y-2.5">
             <div>
-              <h3 className="text-lg font-bold text-white tracking-tight">
-                Quick Links
+              <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                {t("footer.quickLinks", lang)}
               </h3>
-              <div className="w-9 h-[3px] bg-[#4ADE80] rounded-full mt-2" />
+              <div className="w-7 h-[2px] bg-[#4ADE80] rounded-full mt-1.5" />
             </div>
 
-            <ul className="space-y-3.5 pt-1">
+            <ul className="space-y-2 pt-0.5">
               <li>
                 <button
                   type="button"
                   onClick={() => handleNavigate("inventory")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <Home className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>Home</span>
+                  <Home className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.home", lang)}</span>
                 </button>
               </li>
 
@@ -288,10 +252,10 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => handleNavigate("marketplace", "BUYER")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <ShoppingBag className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>Products</span>
+                  <ShoppingBag className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.products", lang)}</span>
                 </button>
               </li>
 
@@ -299,10 +263,10 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => handleNavigate("pricing_ai")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <Users className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>About Us</span>
+                  <Users className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.aboutUs", lang)}</span>
                 </button>
               </li>
 
@@ -310,10 +274,10 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => handleNavigate("logistics")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <Mail className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>Contact Us</span>
+                  <Mail className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.contactUs", lang)}</span>
                 </button>
               </li>
             </ul>
@@ -322,23 +286,23 @@ export const Footer: React.FC<FooterProps> = ({
           {/* ========================================================================= */}
           {/* Column 3: For Farmers (lg:col-span-3)                                      */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="lg:col-span-3 space-y-2.5">
             <div>
-              <h3 className="text-lg font-bold text-white tracking-tight">
-                For Farmers
+              <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                {t("footer.forFarmers", lang)}
               </h3>
-              <div className="w-9 h-[3px] bg-[#4ADE80] rounded-full mt-2" />
+              <div className="w-7 h-[2px] bg-[#4ADE80] rounded-full mt-1.5" />
             </div>
 
-            <ul className="space-y-3.5 pt-1">
+            <ul className="space-y-2 pt-0.5">
               <li>
                 <button
                   type="button"
                   onClick={() => handleNavigate("inventory", "FARMER")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <Tractor className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>Sell Products</span>
+                  <Tractor className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.sellProducts", lang)}</span>
                 </button>
               </li>
 
@@ -346,10 +310,10 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => handleNavigate("buyer_requests", "FARMER")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <Handshake className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>Find Buyers</span>
+                  <Handshake className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.findBuyers", lang)}</span>
                 </button>
               </li>
 
@@ -357,10 +321,10 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => handleNavigate("contracts")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <ClipboardList className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>Track Orders</span>
+                  <ClipboardList className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.trackOrders", lang)}</span>
                 </button>
               </li>
 
@@ -368,10 +332,10 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => handleNavigate("payouts", "FARMER")}
-                  className="flex items-center gap-3 text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
+                  className="flex items-center gap-2.5 text-xs sm:text-sm text-[#C4DDD2] hover:text-[#4ADE80] transition-colors cursor-pointer group text-left"
                 >
-                  <Headphones className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
-                  <span>Support</span>
+                  <Headphones className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.support", lang)}</span>
                 </button>
               </li>
             </ul>
@@ -380,21 +344,21 @@ export const Footer: React.FC<FooterProps> = ({
           {/* ========================================================================= */}
           {/* Column 4: Contact Us (lg:col-span-3)                                       */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="lg:col-span-3 space-y-2.5">
             <div>
-              <h3 className="text-lg font-bold text-white tracking-tight">
-                Contact Us
+              <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                {t("footer.contact", lang)}
               </h3>
-              <div className="w-9 h-[3px] bg-[#4ADE80] rounded-full mt-2" />
+              <div className="w-7 h-[2px] bg-[#4ADE80] rounded-full mt-1.5" />
             </div>
 
-            <ul className="space-y-3.5 pt-1 text-sm text-[#C4DDD2]">
+            <ul className="space-y-2 pt-0.5 text-xs sm:text-sm text-[#C4DDD2]">
               <li>
                 <a
                   href="mailto:info@kisansetu.in"
-                  className="flex items-center gap-3 hover:text-[#4ADE80] transition-colors group"
+                  className="flex items-center gap-2.5 hover:text-[#4ADE80] transition-colors group"
                 >
-                  <Mail className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <Mail className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
                   <span className="truncate">info@kisansetu.in</span>
                 </a>
               </li>
@@ -402,24 +366,24 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="tel:+919876543210"
-                  className="flex items-center gap-3 hover:text-[#4ADE80] transition-colors group"
+                  className="flex items-center gap-2.5 hover:text-[#4ADE80] transition-colors group"
                 >
-                  <Phone className="w-4 h-4 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
+                  <Phone className="w-3.5 h-3.5 text-[#4ADE80] group-hover:scale-110 transition-transform shrink-0" strokeWidth={1.8} />
                   <span>+91 98765 43210</span>
                 </a>
               </li>
 
               <li>
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-4 h-4 text-[#4ADE80] shrink-0" strokeWidth={1.8} />
-                  <span>India</span>
+                <div className="flex items-center gap-2.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#4ADE80] shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.india", lang)}</span>
                 </div>
               </li>
 
               <li>
-                <div className="flex items-center gap-3">
-                  <Clock className="w-4 h-4 text-[#4ADE80] shrink-0" strokeWidth={1.8} />
-                  <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+                <div className="flex items-center gap-2.5">
+                  <Clock className="w-3.5 h-3.5 text-[#4ADE80] shrink-0" strokeWidth={1.8} />
+                  <span>{t("footer.workingHours", lang)}</span>
                 </div>
               </li>
             </ul>
@@ -428,16 +392,16 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* ========================================================================= */}
-        {/* Bottom Section: Copyright with Leaf Sprigs                                 */}
+        {/* Bottom Section: Copyright with Leaf Sprigs - Minimized margin              */}
         {/* ========================================================================= */}
-        <div className="mt-14 pt-6 border-t border-[#0E4233] flex items-center justify-center">
-          <div className="flex items-center gap-3 text-xs sm:text-sm text-[#C4DDD2] font-medium text-center">
+        <div className="mt-5 pt-3.5 border-t border-[#0E4233] flex items-center justify-center">
+          <div className="flex items-center gap-2 sm:gap-3 text-xs text-[#C4DDD2] font-medium text-center">
             {/* Left Leaf Sprig SVG */}
             <svg
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 text-[#4ADE80] shrink-0 drop-shadow-xs"
+              className="w-4 h-4 text-[#4ADE80] shrink-0 drop-shadow-xs"
             >
               <path
                 d="M3 15C5 9 11 6 18 5C17 12 13 18 6 19C5 19 4 19 3 15Z"
@@ -456,14 +420,14 @@ export const Footer: React.FC<FooterProps> = ({
               />
             </svg>
 
-            <span>© 2026 किसानSetu. All Rights Reserved.</span>
+            <span>{t("footer.copyright", lang)}</span>
 
             {/* Right Leaf Sprig SVG (Flipped) */}
             <svg
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 text-[#4ADE80] shrink-0 scale-x-[-1] drop-shadow-xs"
+              className="w-4 h-4 text-[#4ADE80] shrink-0 scale-x-[-1] drop-shadow-xs"
             >
               <path
                 d="M3 15C5 9 11 6 18 5C17 12 13 18 6 19C5 19 4 19 3 15Z"
@@ -488,5 +452,3 @@ export const Footer: React.FC<FooterProps> = ({
     </footer>
   );
 };
-
-
