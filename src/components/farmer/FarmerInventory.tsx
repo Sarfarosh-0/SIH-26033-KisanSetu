@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { 
   Package, 
-  PlusCircle, 
   Leaf, 
   Calendar, 
   TrendingUp, 
@@ -50,36 +49,6 @@ export const FarmerInventory: React.FC<FarmerInventoryProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Top Banner */}
-      <div className="bg-white rounded-3xl p-6 sm:p-7 border border-emerald-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 uppercase tracking-wide">
-              {lang === "hi" ? "उपज इन्वेंटरी प्रबंधन" : "Crop Inventory Management"}
-            </span>
-            <span className="text-xs text-slate-500 font-medium">
-              • {lang === "hi" ? "तैयार व कटी हुई फसलें" : "Standing & Harvested Lots"}
-            </span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2 font-display">
-            {lang === "hi" ? "आपकी फसल इन्वेंटरी व लिस्टिंग्स" : "Your Crop Inventory & Harvest Listings"}
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-0.5 font-medium">
-            {lang === "hi"
-              ? "अपनी उपज के लॉट प्रबंधित करें, ऑर्डर की स्थिति देखें और AI उचित मूल्य सहायता से नई फसल लिस्ट करें।"
-              : "Manage your commodity lots, track buyer order fulfillments, and publish new harvests directly with AI-guided fair pricing."}
-          </p>
-        </div>
-
-        <button
-          onClick={onOpenCreateModal}
-          className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-3 rounded-2xl shadow-xs transition-all cursor-pointer text-xs self-start md:self-auto"
-        >
-          <PlusCircle className="w-4 h-4" />
-          <span>{lang === "hi" ? "नई फसल लिस्ट करें" : "List New Crop Lot"}</span>
-        </button>
-      </div>
-
       {/* Main Grid: Active Listings & Incoming Orders */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Left Column (2 Cols): Active Listings */}
@@ -100,7 +69,7 @@ export const FarmerInventory: React.FC<FarmerInventoryProps> = ({
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={lang === "hi" ? "फसल या किस्म खोजें..." : "Search crop or variety..."}
-                className="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 font-medium w-40 sm:w-48"
+                className="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 font-medium w-36 sm:w-44"
               />
               <select
                 value={filterStatus}

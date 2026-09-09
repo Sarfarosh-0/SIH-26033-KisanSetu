@@ -16,10 +16,10 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, onBackToApp })
       {/* Right Column: Authentication Form Panel */}
       <main 
         id="auth-content"
-        className="flex-1 flex flex-col justify-between p-6 sm:p-10 lg:p-14 xl:p-16 overflow-y-auto"
+        className="flex-1 flex flex-col justify-between p-4 sm:p-6 lg:p-8 xl:p-10 overflow-y-auto"
       >
         {/* Contextual top utility bar */}
-        <div className="w-full max-w-[448px] mx-auto flex justify-between items-center text-xs text-ink-500 mb-2">
+        <div className="w-full max-w-[448px] mx-auto flex justify-between items-center text-xs text-ink-500 mb-1 sm:mb-2">
           {onBackToApp ? (
             <button
               type="button"
@@ -33,19 +33,19 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, onBackToApp })
             <div />
           )}
 
-          <span className="inline-flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-full border border-surface-200 shadow-2xs">
+          <span className="inline-flex items-center gap-1.5 bg-white px-2.5 py-0.5 sm:py-1 rounded-full border border-surface-200 shadow-2xs">
             <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" aria-hidden="true" />
-            <span className="font-semibold text-ink-700">Secure Direct Access</span>
+            <span className="font-semibold text-ink-700 text-[11px] sm:text-xs">Secure Direct Access</span>
           </span>
         </div>
 
         {/* Centered Form Wrapper (Max Width ~448px) */}
-        <div className="w-full max-w-[448px] mx-auto my-auto py-4 sm:py-6">
+        <div className="w-full max-w-[448px] mx-auto my-auto py-1 sm:py-2">
           {children}
         </div>
 
-        {/* Bottom subtle copyright / legal line for mobile/tablet alignment */}
-        <div className="w-full max-w-[448px] mx-auto pt-6 text-center text-[11px] text-ink-500/70">
+        {/* Bottom subtle copyright / legal line */}
+        <div className="w-full max-w-[448px] mx-auto pt-2 sm:pt-3 text-center text-[10px] sm:text-[11px] text-ink-500/70">
           © 2026 किसानSetu Technologies Private Limited. All rights reserved.
         </div>
       </main>

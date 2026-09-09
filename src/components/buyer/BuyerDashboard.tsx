@@ -2,18 +2,10 @@ import React, { useState } from "react";
 import { 
   ShoppingBag, 
   Package, 
-  FileText, 
   CreditCard, 
-  ShieldCheck, 
-  MapPin, 
   Truck, 
   Sparkles, 
-  Search, 
-  ArrowRight,
-  TrendingDown,
-  Building,
-  CheckCircle2,
-  Lock
+  CheckCircle2
 } from "lucide-react";
 import { CropListing, Order, User } from "../../types";
 import { BuyerMarketplace } from "../BuyerMarketplace";
@@ -53,52 +45,6 @@ export const BuyerDashboard: React.FC<BuyerDashboardProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Buyer Identity Header */}
-      <div className="bg-white rounded-3xl p-6 sm:p-7 border border-emerald-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-800 text-white flex items-center justify-center font-extrabold text-xl shadow-md font-display shrink-0">
-            {buyer.name.charAt(0)}
-          </div>
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 font-display">
-                {buyer.name}
-              </h1>
-              <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>{t("role.verifiedBuyer", lang)}</span>
-              </span>
-            </div>
-            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 font-medium mt-1">
-              <span className="flex items-center gap-1 text-slate-700 font-semibold">
-                <Building className="w-3.5 h-3.5 text-emerald-600" />
-                <span>{buyer.fpoName || (lang === "hi" ? "ग्रीनबाइट ऑर्गेनिक्स होलसेल" : "GreenBite Organics Wholesale")}</span>
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                <span>{buyer.district}, {buyer.state} {lang === "hi" ? "हब" : "Hub"}</span>
-              </span>
-              <span>•</span>
-              <span className="text-emerald-700 font-bold">
-                {lang === "hi" ? "विश्वसनीयता रेटिंग:" : "Trust Rating:"} {buyer.trustScore}% ({lang === "hi" ? "KYC सत्यापित" : "KYC Verified"})
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick KPI badge */}
-        <div className="flex items-center gap-3 bg-[#F0FDF4] p-3.5 rounded-2xl border border-emerald-200 text-xs">
-          <div className="text-right">
-            <span className="text-slate-500 text-[11px] block font-medium">{t("buyer.escrowProtection", lang)}</span>
-            <span className="font-extrabold text-slate-900 font-display text-sm">₹1,85,000 {lang === "hi" ? "सक्रिय" : "Active"}</span>
-          </div>
-          <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">
-            <Lock className="w-4 h-4" />
-          </div>
-        </div>
-      </div>
-
       {/* Main Layout: Sidebar & Content Area */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Buyer Navigation Sidebar (3 Cols) */}

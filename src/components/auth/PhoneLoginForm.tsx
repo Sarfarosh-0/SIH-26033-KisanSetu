@@ -59,36 +59,36 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
     : phone;
 
   return (
-    <div className="w-full max-w-[448px] mx-auto space-y-6 animate-in fade-in duration-200">
+    <div className="w-full max-w-[448px] mx-auto space-y-3.5 sm:space-y-4 animate-in fade-in duration-200">
       {/* Mobile-only Brand Header */}
-      <div className="lg:hidden flex flex-col items-center text-center space-y-2 mb-6">
-        <div className="w-12 h-12 rounded-2xl bg-brand-500 text-white flex items-center justify-center shadow-md">
-          <Sprout className="w-6 h-6 text-white" aria-hidden="true" />
+      <div className="lg:hidden flex flex-col items-center text-center space-y-1 mb-3">
+        <div className="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center shadow-md">
+          <Sprout className="w-5 h-5 text-white" aria-hidden="true" />
         </div>
         <div>
-          <span className="font-extrabold text-xl tracking-tight text-ink-950 font-display">
-            Agri<span className="text-brand-500">Market</span>
+          <span className="font-extrabold text-lg tracking-tight text-ink-950 font-display">
+            किसान<span className="text-brand-500">Setu</span>
           </span>
-          <p className="text-xs text-ink-500 font-medium">
-            Direct Farm-Gate to Buyer Digital Exchange
+          <p className="text-[11px] text-ink-500 font-medium">
+            National Digital Agriculture Platform
           </p>
         </div>
       </div>
 
       {/* Header & Role-Adaptive Supporting Content */}
-      <div className="space-y-1.5 text-center lg:text-left">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-ink-950 tracking-tight font-display">
+      <div className="space-y-0.5 text-center lg:text-left">
+        <h2 className="text-xl sm:text-2xl font-extrabold text-ink-950 tracking-tight font-display">
           Welcome back 👋
         </h2>
         
-        {/* Dynamic supporting text with fixed min-height to prevent jumping */}
+        {/* Dynamic supporting text with compact min-height */}
         <div 
           id={`role-panel-${role}`}
           role="region" 
           aria-live="polite"
-          className="min-h-[2.5rem] flex items-center justify-center lg:justify-start transition-opacity duration-200"
+          className="min-h-[1.5rem] flex items-center justify-center lg:justify-start transition-opacity duration-200"
         >
-          <p className="text-xs sm:text-sm text-ink-500 leading-relaxed font-normal">
+          <p className="text-xs text-ink-500 leading-normal font-normal">
             {role === "farmer"
               ? "Access your crops, pricing insights and buyer requests."
               : "Discover fresh produce directly from verified farmers."}
@@ -97,7 +97,7 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
       </div>
 
       {/* Segmented Role Selector */}
-      <div className="pt-1">
+      <div className="pt-0.5">
         <RoleSelector 
           role={role} 
           onChange={onRoleChange} 
@@ -106,31 +106,31 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
       </div>
 
       {/* Main Phone Login Form */}
-      <form onSubmit={handleSubmit} className="space-y-4 pt-1" noValidate>
-        <div className="space-y-2 text-left">
+      <form onSubmit={handleSubmit} className="space-y-2.5 pt-0.5" noValidate>
+        <div className="space-y-1 text-left">
           <label 
             htmlFor="phone-input" 
-            className="block text-xs sm:text-sm font-bold text-ink-700"
+            className="block text-xs font-bold text-ink-700"
           >
             Phone Number
           </label>
 
           <div 
-            className={`relative flex items-center rounded-2xl border transition-all duration-150 bg-white ${
+            className={`relative flex items-center rounded-xl border transition-all duration-150 bg-white ${
               error 
                 ? "border-red-400 ring-2 ring-red-100" 
                 : "border-surface-200 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-100"
             }`}
           >
             {/* Country Code Prefix */}
-            <div className="pl-3.5 pr-2 py-3 flex items-center gap-1.5 border-r border-surface-200 text-ink-700 select-none">
-              <span className="text-sm font-bold">🇮🇳 +91</span>
+            <div className="pl-3 pr-2 py-2 flex items-center gap-1 border-r border-surface-200 text-ink-700 select-none">
+              <span className="text-xs sm:text-sm font-bold">🇮🇳 +91</span>
             </div>
 
             {/* Input Field */}
             <div className="relative flex-1 flex items-center">
               <Phone 
-                className="absolute left-3 w-4 h-4 text-ink-500 pointer-events-none" 
+                className="absolute left-3 w-3.5 h-3.5 text-ink-500 pointer-events-none" 
                 aria-hidden="true" 
               />
               <input
@@ -146,7 +146,7 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
                 disabled={isSubmitting}
                 aria-describedby={error ? "phone-error" : "phone-hint"}
                 aria-invalid={error ? "true" : "false"}
-                className="w-full min-h-[48px] pl-9 pr-4 py-3 text-sm font-semibold text-ink-950 placeholder:text-ink-500/60 bg-transparent rounded-r-2xl focus:outline-hidden"
+                className="w-full min-h-[40px] pl-8 pr-3 py-2 text-xs sm:text-sm font-semibold text-ink-950 placeholder:text-ink-500/60 bg-transparent rounded-r-xl focus:outline-hidden"
               />
             </div>
           </div>
@@ -173,11 +173,11 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
         <button
           type="submit"
           disabled={isSubmitting || phone.length < 10}
-          className="w-full min-h-[48px] px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-all duration-150 shadow-sm hover:shadow-md cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-brand-500 disabled:shadow-none"
+          className="w-full min-h-[42px] px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-150 shadow-xs hover:shadow-sm cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-brand-500 disabled:shadow-none"
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
+              <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
               <span>Sending code...</span>
             </>
           ) : (
@@ -190,9 +190,9 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
       </form>
 
       {/* Divider */}
-      <div className="relative flex items-center justify-center py-1">
+      <div className="relative flex items-center justify-center py-0.5">
         <div className="w-full border-t border-surface-200" aria-hidden="true" />
-        <span className="absolute bg-white px-3 text-xs uppercase tracking-wider font-semibold text-ink-500">
+        <span className="absolute bg-white px-3 text-[11px] uppercase tracking-wider font-semibold text-ink-500">
           OR
         </span>
       </div>
@@ -205,7 +205,7 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
       />
 
       {/* Auth Footer with Terms and Sign up Toggle */}
-      <div className="pt-2">
+      <div className="pt-0.5">
         <AuthFooter 
           isSignUp={isSignUp} 
           onToggleSignUp={() => setIsSignUp(!isSignUp)} 

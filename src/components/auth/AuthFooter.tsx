@@ -14,9 +14,9 @@ export const AuthFooter: React.FC<AuthFooterProps> = ({
 
   return (
     <>
-      <footer className="w-full space-y-4 text-center">
+      <footer className="w-full space-y-2 text-center">
         {/* Signup / Signin Toggle */}
-        <div className="text-xs sm:text-sm text-ink-500 font-medium">
+        <div className="text-xs text-ink-500 font-medium">
           {isSignUp ? (
             <span>
               Already have an account?{" "}
@@ -43,7 +43,7 @@ export const AuthFooter: React.FC<AuthFooterProps> = ({
         </div>
 
         {/* Legal Agreements */}
-        <p className="text-[11px] text-ink-500 leading-relaxed max-w-sm mx-auto">
+        <p className="text-[11px] text-ink-500 leading-tight max-w-sm mx-auto">
           By continuing, you agree to किसानSetu's{" "}
           <button
             type="button"
@@ -64,7 +64,7 @@ export const AuthFooter: React.FC<AuthFooterProps> = ({
         </p>
 
         {/* Security badge indicator */}
-        <div className="inline-flex items-center gap-1.5 text-[11px] text-ink-500/80 font-medium pt-1">
+        <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] text-ink-500/80 font-medium pt-0.5">
           <ShieldCheck className="w-3.5 h-3.5 text-brand-500" aria-hidden="true" />
           <span>Bank-grade 256-bit encryption • APMC compliant</span>
         </div>

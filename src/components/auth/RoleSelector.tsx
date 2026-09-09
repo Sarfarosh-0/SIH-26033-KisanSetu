@@ -49,11 +49,11 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
       <div 
         role="tablist" 
         aria-labelledby="role-selector-label"
-        className="relative bg-surface-100 p-1.5 rounded-2xl border border-surface-200 flex items-center justify-between shadow-inner"
+        className="relative bg-surface-100 p-1 rounded-xl border border-surface-200 flex items-center justify-between shadow-inner"
       >
         {/* Animated Sliding Highlight Pill */}
         <div 
-          className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white rounded-xl shadow-xs border border-surface-200/80 transition-transform duration-200 ease-out pointer-events-none ${
+          className={`absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-lg shadow-xs border border-surface-200/80 transition-transform duration-200 ease-out pointer-events-none ${
             role === "buyer" ? "translate-x-full" : "translate-x-0"
           }`}
           aria-hidden="true"
@@ -75,14 +75,14 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
               disabled={disabled}
               onClick={() => onChange(item.id)}
               onKeyDown={(e) => handleKeyDown(e, item.id)}
-              className={`relative z-10 w-1/2 min-h-[44px] flex items-center justify-center gap-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500 disabled:opacity-60 disabled:cursor-not-allowed ${
+              className={`relative z-10 w-1/2 min-h-[36px] sm:min-h-[38px] py-1.5 flex items-center justify-center gap-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-150 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500 disabled:opacity-60 disabled:cursor-not-allowed ${
                 isSelected 
                   ? "text-brand-700 font-bold" 
                   : "text-ink-500 hover:text-ink-700 hover:bg-white/40"
               }`}
             >
               <Icon 
-                className={`w-4 h-4 transition-colors shrink-0 ${
+                className={`w-3.5 h-3.5 transition-colors shrink-0 ${
                   isSelected ? "text-brand-600" : "text-ink-500"
                 }`} 
                 aria-hidden="true" 
