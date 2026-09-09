@@ -59,7 +59,7 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
     : phone;
 
   return (
-    <div className="w-full max-w-[448px] mx-auto space-y-3.5 sm:space-y-4 animate-in fade-in duration-200">
+    <div className="w-full space-y-3.5 sm:space-y-4 animate-in fade-in duration-200">
       {/* Mobile-only Brand Header */}
       <div className="lg:hidden flex flex-col items-center text-center space-y-1 mb-3">
         <div className="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center shadow-md">
@@ -107,19 +107,20 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
 
       {/* Main Phone Login Form */}
       <form onSubmit={handleSubmit} className="space-y-2.5 pt-0.5" noValidate>
-        <div className="space-y-1 text-left">
+        <div className="space-y-1.5 text-left">
           <label 
             htmlFor="phone-input" 
-            className="block text-xs font-bold text-ink-700"
+            className="flex items-center gap-2 text-xs font-bold text-ink-700"
           >
+            <span className="w-0.5 h-3.5 bg-gradient-to-b from-brand-400 to-brand-600 rounded-full" aria-hidden="true" />
             Phone Number
           </label>
 
           <div 
-            className={`relative flex items-center rounded-xl border transition-all duration-150 bg-white ${
+            className={`relative flex items-center rounded-xl border transition-all duration-200 bg-white/90 shadow-[inset_0_1px_3px_rgba(0,0,0,0.04)] ${
               error 
                 ? "border-red-400 ring-2 ring-red-100" 
-                : "border-surface-200 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-100"
+                : "border-surface-200/80 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-100 focus-within:shadow-none focus-within:bg-white"
             }`}
           >
             {/* Country Code Prefix */}
@@ -173,7 +174,7 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
         <button
           type="submit"
           disabled={isSubmitting || phone.length < 10}
-          className="w-full min-h-[42px] px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-150 shadow-xs hover:shadow-sm cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-brand-500 disabled:shadow-none"
+          className="w-full min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 active:from-brand-700 active:to-brand-800 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-brand-500/20 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-brand-500 disabled:hover:to-brand-600 disabled:shadow-none"
         >
           {isSubmitting ? (
             <>
@@ -191,8 +192,8 @@ export const PhoneLoginForm: React.FC<PhoneLoginFormProps> = ({
 
       {/* Divider */}
       <div className="relative flex items-center justify-center py-0.5">
-        <div className="w-full border-t border-surface-200" aria-hidden="true" />
-        <span className="absolute bg-white px-3 text-[11px] uppercase tracking-wider font-semibold text-ink-500">
+        <div className="w-full border-t border-surface-200/60" aria-hidden="true" />
+        <span className="absolute bg-white/80 backdrop-blur-sm px-3 text-[11px] uppercase tracking-wider font-semibold text-ink-400">
           OR
         </span>
       </div>

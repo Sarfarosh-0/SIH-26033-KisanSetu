@@ -49,11 +49,11 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
       <div 
         role="tablist" 
         aria-labelledby="role-selector-label"
-        className="relative bg-surface-100 p-1 rounded-xl border border-surface-200 flex items-center justify-between shadow-inner"
+        className="relative bg-surface-100/70 p-1 rounded-xl border border-surface-200/60 flex items-center justify-between shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]"
       >
         {/* Animated Sliding Highlight Pill */}
         <div 
-          className={`absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-lg shadow-xs border border-surface-200/80 transition-transform duration-200 ease-out pointer-events-none ${
+          className={`absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white/90 rounded-lg shadow-xs border border-surface-200/60 transition-transform duration-200 ease-out pointer-events-none ${
             role === "buyer" ? "translate-x-full" : "translate-x-0"
           }`}
           aria-hidden="true"

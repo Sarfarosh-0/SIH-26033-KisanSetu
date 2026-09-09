@@ -100,7 +100,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
         <div 
           role="status"
           aria-live="polite"
-          className="w-full max-w-[448px] mx-auto text-center p-8 bg-white rounded-3xl border border-brand-200 shadow-xl space-y-4 animate-in zoom-in-95 duration-200"
+          className="w-full text-center p-6 sm:p-8 bg-white/50 rounded-xl space-y-4 animate-in zoom-in-95 duration-200"
         >
           <div className="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 border border-brand-200 flex items-center justify-center mx-auto shadow-xs">
             <CheckCircle2 className="w-8 h-8 text-brand-600 animate-bounce" aria-hidden="true" />
